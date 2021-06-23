@@ -1,0 +1,10 @@
+#regions_div {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 80px;
+}
+
+.google-visualization-tooltip-item {
+    white-space: nowrap;
+}
