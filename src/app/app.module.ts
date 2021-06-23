@@ -20,6 +20,7 @@ import { WeatherComponent } from './components/weather/weather.component';
 import { WeatherMenuComponent } from './components/weather/weather-menu/weather-menu.component';
 import { WeatherMapComponent } from './components/weather/weather-map/weather-map.component';
 import { WeatherToggleComponent } from './components/weather/weather-menu/weather-toggle/weather-toggle.component';
+import { WeatherDetailComponent } from './components/weather/weather-detail/weather-detail.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { WeatherToggleComponent } from './components/weather/weather-menu/weathe
     WeatherComponent,
     WeatherMenuComponent,
     WeatherMapComponent,
-    WeatherToggleComponent
+    WeatherToggleComponent,
+    WeatherDetailComponent
   ],
   imports: [
     BrowserModule,

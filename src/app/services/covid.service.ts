@@ -19,4 +19,5 @@ export class CovidService {
   getCovidDataByCountry(code: string) {
     return this.http.get<any>(this.baseUrl + '/' + code)
   }
+  
 }

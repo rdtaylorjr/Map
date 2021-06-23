@@ -1,0 +1,18 @@
+<div id="back" (click)="back()">
+    <div id="details" class="container bg-white border border-dark rounded text-dark p-4">
+        <div class="d-flex justify-content-between flex-wrap pt-6">
+            <div class="ml-3">
+                <div class="mb-3">
+                    <h1 class="mt-3">{{ data?.name }}, {{ data?.sys?.country }}</h1>
+                    <!-- Population: <b>{{ data?.population | number }}</b><br /> -->
+                </div>
+                <div class="mb-3">
+                    <div>Temperature:<b> {{ data.main.temp }}° C</b></div>
+                    <div>Precipitation:<b> {{ data.weather[0].description | titlecase }} </b></div>
+                    <div>Humidity:<b> {{ data.main.humidity }}%</b></div>
+                    <div>Wind:<b> {{ data.wind.speed }} km/h</b></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

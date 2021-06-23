@@ -4,10 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { CovidData } from 'src/app/interfaces/covid-data';
 import { CovidService } from 'src/app/services/covid.service';
-import { apikey } from './apikey'
 
 import { } from "@googlemaps/google-maps-services-js";
-declare let google: any
+import { googleApiKey } from 'src/assets/apikeys';
+declare let google: any;
 
 @Component({
   selector: 'app-covid-map',
@@ -31,7 +31,7 @@ export class CovidMapComponent implements OnInit {
   drawMap() {
     google.charts.load('current', {
       'packages': ['geochart'],
-      'mapsApiKey': apikey
+      'mapsApiKey': googleApiKey
     });
 
     google.charts.setOnLoadCallback(() => {

@@ -11,6 +11,7 @@ import { DetailComponent } from './components/covid/detail/detail.component';
 
 import { WeatherComponent } from './components/weather/weather.component';
 import { WeatherMapComponent } from './components/weather/weather-map/weather-map.component';
+import { WeatherDetailComponent } from './components/weather/weather-detail/weather-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/covid/map', pathMatch: 'full' },
@@ -35,7 +36,9 @@ const routes: Routes = [
   },
   { path: 'weather', component: WeatherComponent,
     children: [
-      { path: 'map', component: WeatherMapComponent }
+      { path: 'map', component: WeatherMapComponent,
+        children: [{ path: 'detail/:coordinates', component: WeatherDetailComponent }]
+      }
     ]
   }
 ];
