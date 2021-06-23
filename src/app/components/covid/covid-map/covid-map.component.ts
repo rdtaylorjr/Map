@@ -1,12 +1,12 @@
 import { formatNumber } from '@angular/common';
 import { Component, HostListener, Inject, Input, LOCALE_ID, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { } from "@googlemaps/google-maps-services-js";
 import { CovidData } from 'src/app/interfaces/covid-data';
 import { CovidService } from 'src/app/services/covid.service';
 import { __values } from 'tslib';
 
-declare let google:any
+declare let google: any
 
 @Component({
   selector: 'app-covid-map',
@@ -19,9 +19,9 @@ export class CovidMapComponent implements OnInit {
   @Input() color: string = 'd9534f'
   chart: any
 
-  constructor(private covidService : CovidService, @Inject(LOCALE_ID) private locale: string, private router: Router) { }
+  constructor(private covidService : CovidService, @Inject(LOCALE_ID) private locale: string, private router: Router, private activatedRoute: ActivatedRoute ) { }
 
-  ngOnInit(): void {   
+  ngOnInit(): void {
     this.covidService.getCovidData().subscribe(response => {
       this.data = response.data.map((country: CovidData) => {
         return [{ v: country.code, f: country.name},
@@ -40,16 +40,16 @@ export class CovidMapComponent implements OnInit {
     });
 
     google.charts.setOnLoadCallback(() => {
-      var data = new google.visualization.DataTable()
+      let data = new google.visualization.DataTable()
       data.addColumn('string', 'Country')
       data.addColumn('number', 'Confirmed')
       data.addColumn({ type: 'string', role: 'tooltip', 'p': { 'html': true } })
       data.addRows(this.data)
 
-      var options = {
+      let options = {
         displayMode: 'regions',
         domain: 'IN',
-        tooltip: { isHtml: true, trigger: 'focus' },
+        tooltip: { isHtml: true, trigger: focus },
         enableRegionInteractivity: true,
         geochartVersion: 11, 
         width: window.innerWidth,
@@ -58,19 +58,16 @@ export class CovidMapComponent implements OnInit {
       };
   
       let chart = new google.visualization.GeoChart(document.getElementById('regions_div'))
-  
       chart.draw(data, options)
 
       google.visualization.events.addListener(chart, 'select', () => {
         var selectedItem = chart.getSelection()[0]
         if (selectedItem) {
           let country = data.getValue(selectedItem.row, 0)
-          this.router.navigate(['/covid/detail', country])
+          this.router.navigate(['detail', country], { relativeTo: this.activatedRoute })
         }
       });
     });
-
-
   }
 
   getColor(latest_data: any) {

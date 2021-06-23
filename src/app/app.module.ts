@@ -19,9 +19,6 @@ import { WeatherComponent } from './components/weather/weather.component';
 import { WeatherMenuComponent } from './components/weather/weather-menu/weather-menu.component';
 import { WeatherMapComponent } from './components/weather/weather-map/weather-map.component';
 
-// import { MapComponent } from './components/map/map.component';
-// import { MenuComponent } from './components/menu/menu.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,10 +35,7 @@ import { WeatherMapComponent } from './components/weather/weather-map/weather-ma
 
     WeatherComponent,
     WeatherMenuComponent,
-    WeatherMapComponent,
-
-    // MapComponent,
-    // MenuComponent
+    WeatherMapComponent
   ],
   imports: [
     BrowserModule,

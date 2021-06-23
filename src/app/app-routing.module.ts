@@ -16,13 +16,21 @@ const routes: Routes = [
   { path: '', redirectTo: '/covid/map', pathMatch: 'full' },
   { path: 'covid', component: CovidComponent,
     children: [
-      { path: 'map', component: CovidMapComponent },
-      { path: 'map/active', component: ActiveComponent },
-      { path: 'map/confirmed', component: ConfirmedComponent },
-      { path: 'map/recovered', component: RecoveredComponent },
-      { path: 'map/deceased', component: DeceasedComponent },
-      { path: 'detail', component: DetailComponent },
-      { path: 'detail/:country', component: DetailComponent }
+      { path: 'map', component: CovidMapComponent,
+        children: [{ path: 'detail/:country', component: DetailComponent }]
+      },
+      { path: 'map/active', component: ActiveComponent,
+        children: [{ path: 'detail/:country', component: DetailComponent }]
+      },
+      { path: 'map/confirmed', component: ConfirmedComponent,
+        children: [{ path: 'detail/:country', component: DetailComponent }]
+      },
+      { path: 'map/recovered', component: RecoveredComponent,
+        children: [{ path: 'detail/:country', component: DetailComponent }]
+      },
+      { path: 'map/deceased', component: DeceasedComponent,
+        children: [{ path: 'detail/:country', component: DetailComponent }]
+      }
     ]
   },
   { path: 'weather', component: WeatherComponent,

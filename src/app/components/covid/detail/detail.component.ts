@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CovidData } from 'src/app/interfaces/covid-data';
 import { CovidService } from 'src/app/services/covid.service';
 
@@ -14,8 +14,9 @@ export class DetailComponent implements OnInit {
 
   data!: CovidData
   country: any
+  detail = true
 
-  constructor(private activatedRoute: ActivatedRoute, private covidService : CovidService) { }
+  constructor(private covidService : CovidService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void { 
     this.country = this.activatedRoute.snapshot.paramMap.get('country')
@@ -37,7 +38,6 @@ export class DetailComponent implements OnInit {
       ]);
 
       var options = {
-        // title: 'Outcome of Confirmed Cases',
         slices: {
           0: { color: '0275d8' },
           1: { color: '5bc0de' },
@@ -45,12 +45,15 @@ export class DetailComponent implements OnInit {
         },
         chartArea: { width: '90%', height: '90%', top: 0 },
         legend: { position: 'bottom', alignment: 'center' },
-        // backgroundColor: { strokeWidth: 2 }
       };
 
       var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
       chart.draw(data, options);
     });
+  }
+
+  back() {
+    this.router.navigate(['../../'], { relativeTo: this.activatedRoute })
   }
 }
