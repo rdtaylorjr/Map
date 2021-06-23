@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CovidData } from 'src/app/interfaces/covid-data';
 import { CovidService } from 'src/app/services/covid.service';
 
-declare let google:any
+declare let google: any
 
 @Component({
   selector: 'app-detail',
@@ -13,13 +13,12 @@ declare let google:any
 export class DetailComponent implements OnInit {
 
   data!: CovidData
-  country: any
-  detail = true
+  country!: string
 
   constructor(private covidService : CovidService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void { 
-    this.country = this.activatedRoute.snapshot.paramMap.get('country')
+    this.country = this.activatedRoute.snapshot.paramMap.get('country') || ''
     
     this.covidService.getCovidDataByCountry(this.country).subscribe(response => { 
       this.data = response.data

@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActiveComponent implements OnInit {
 
-  color = '0275d8'
+  view = { title: 'Active Covid Cases', color: '0275d8' }
 
   constructor() { }
 

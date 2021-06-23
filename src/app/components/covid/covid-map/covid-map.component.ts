@@ -1,11 +1,11 @@
 import { formatNumber } from '@angular/common';
 import { Component, HostListener, Inject, Input, LOCALE_ID, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { } from "@googlemaps/google-maps-services-js";
+
 import { CovidData } from 'src/app/interfaces/covid-data';
 import { CovidService } from 'src/app/services/covid.service';
-import { __values } from 'tslib';
 
+import { } from "@googlemaps/google-maps-services-js";
 declare let google: any
 
 @Component({
@@ -15,20 +15,14 @@ declare let google: any
 })
 export class CovidMapComponent implements OnInit {
 
-  data: any[] = []
-  @Input() color: string = 'd9534f'
-  chart: any
+  @Input() view = { title: 'Cases Per Million People', color: 'd9534f' }
+  private data = []
 
-  constructor(private covidService : CovidService, @Inject(LOCALE_ID) private locale: string, private router: Router, private activatedRoute: ActivatedRoute ) { }
+  constructor(private covidService : CovidService, private router: Router, private activatedRoute: ActivatedRoute, @Inject(LOCALE_ID) private locale: string) { }
 
   ngOnInit(): void {
     this.covidService.getCovidData().subscribe(response => {
-      this.data = response.data.map((country: CovidData) => {
-        return [{ v: country.code, f: country.name},
-          this.getColor(country.latest_data),
-          this.tooltip(country.latest_data)
-        ]
-      })
+      this.data = response.data.map((country: CovidData) => [{ v: country.code, f: ''}, this.viewData(country), this.tooltip(country)])
       this.drawMap()
     })
   }
@@ -47,14 +41,12 @@ export class CovidMapComponent implements OnInit {
       data.addRows(this.data)
 
       let options = {
-        displayMode: 'regions',
-        domain: 'IN',
-        tooltip: { isHtml: true, trigger: focus },
-        enableRegionInteractivity: true,
         geochartVersion: 11, 
+        domain: 'IN',
         width: window.innerWidth,
         keepAspectRatio: true,
-        colorAxis: { colors: ['f7f7f7', this.color] }
+        colorAxis: { colors: ['f7f7f7', this.view.color] },
+        tooltip: { isHtml: true, trigger: focus }
       };
   
       let chart = new google.visualization.GeoChart(document.getElementById('regions_div'))
@@ -70,30 +62,21 @@ export class CovidMapComponent implements OnInit {
     });
   }
 
-  getColor(latest_data: any) {
-    switch (this.color) {
-      case '0275d8': return latest_data.critical
-      case '5cb85c': return latest_data.confirmed
-      case '5bc0de': return latest_data.recovered
-      case 'f0ad4e': return latest_data.deaths
-      default: return latest_data.calculated.cases_per_million_population
+  viewData(country: CovidData) {
+    switch (this.view.title) {
+      case 'Active Covid Cases': return country.latest_data.critical
+      case 'Total Confirmed Covid Cases': return country.latest_data.confirmed
+      case 'Total Recovered Covid Cases': return country.latest_data.recovered
+      case 'Total Deceased Covid Cases': return country.latest_data.deaths
+      default: return country.latest_data.calculated.cases_per_million_population
     }
   }
 
-  tooltip(latest_data: any) {
-    return '<div style="white-space: nowrap;">' +
-        '<div><b>Covid Cases</b></div>' +
-        '<div ' + (this.color == '0275d8' ? 'class="text-primary"' : '') + '>Active: ' +
-          '<b>' + formatNumber(latest_data.critical, this.locale) + '</b></div>' +
-        '<div ' + (this.color == '5cb85c' ? 'class="text-success"' : '') + '>Confirmed: ' +
-          '<b>' + formatNumber(latest_data.confirmed, this.locale) + '</b></div>' +
-        '<div ' + (this.color == '5bc0de' ? 'class="text-info"' : '') + '>Recovered: ' +
-          '<b>' + formatNumber(latest_data.recovered, this.locale) + '</b></div>' +
-        '<div ' + (this.color == 'f0ad4e' ? 'class="text-warning"' : '') + '>Deceased: ' +
-          '<b>' + formatNumber(latest_data.deaths, this.locale) + '</b></div>' +
-        '<div ' + (this.color == 'd9534f' ? 'class="text-danger"' : '') + '>Per million: ' +
-          '<b>' + formatNumber(latest_data.calculated.cases_per_million_population, this.locale) + '</b></div>' +
-      '</div>'
+  tooltip(country: CovidData) {
+    return '<div style="white-space: nowrap;">' + 
+      '<div class="mb-1">' + this.view.title + '</div>' +
+      '<div>' + country.name + ': ' +
+      '<b>' + formatNumber(this.viewData(country) || 0, this.locale) + '</b></div>'
   }
 
   @HostListener('window:resize', ['$event'])

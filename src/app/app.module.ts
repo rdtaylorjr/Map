@@ -9,10 +9,10 @@ import { CovidComponent } from './components/covid/covid.component';
 import { CovidMenuComponent } from './components/covid/covid-menu/covid-menu.component';
 import { CovidMapComponent } from './components/covid/covid-map/covid-map.component';
 
-import { ActiveComponent } from './components/covid/active/active.component';
-import { ConfirmedComponent } from './components/covid/confirmed/confirmed.component';
-import { RecoveredComponent } from './components/covid/recovered/recovered.component';
-import { DeceasedComponent } from './components/covid/deceased/deceased.component';
+import { ActiveComponent } from './components/covid/covid-map/active/active.component';
+import { ConfirmedComponent } from './components/covid/covid-map/confirmed/confirmed.component';
+import { RecoveredComponent } from './components/covid/covid-map/recovered/recovered.component';
+import { DeceasedComponent } from './components/covid/covid-map/deceased/deceased.component';
 import { DetailComponent } from './components/covid/detail/detail.component';
 
 import { WeatherComponent } from './components/weather/weather.component';
