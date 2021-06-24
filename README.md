@@ -21,18 +21,29 @@ This project was written using [Angular CLI](https://github.com/angular/angular-
 **/covid/map**
 - The root path `/` redirects to `/covid/map` which displays the `covid-menu` and `covid-map` components.
 - Navigation buttons at the top of the page allow the user to toggle which dataset is used for coloring the world map.
-  'Active': Displays current active Covid-19 cases in each country shaded in blue.
-  'Confirmed': Displays total confirmed cases in each country shaded in green.
-  'Recovered': Displays total recovered cases in each country shaded in teal.
-  '
+- 'Per Million' is the default and displays the number of Covid-19 cases per million people in each country shaded in red.
 
-## Development server
+**/covid/map/active**
+ - 'Active' displays the current number of active cases in each country shaded in blue. 
+ - When the user hovers over each country, the number of cases for that country is displayed.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+**/covid/map/confirmed**
+- 'Confirmed' displays the total number of confirmed cases in each country shaded in green. 
+- When the user hovers over each country, the number of cases for that country is displayed.
 
-## Code scaffolding
+**/covid/map/recovered**
+- 'Recovered' displays the total number of recovered cases in each country shaded in teal. 
+- When the user hovers over each country, the number of cases for that country is displayed.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+**/covid/map/deceased**
+- 'Deceased' displays the total number of deaths in each countries shaded in yellow. 
+- When the user hovers over each country, the number of cases for that country is displayed.
+
+**/covid/map/detail/{country.code}
+- When the user clicks on any country, the `covid-detail` component pops up and displays more detailed information for that country.
+- 
+
+
 
 ## Build
 
