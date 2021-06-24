@@ -44,9 +44,10 @@ This project was written using [Angular CLI](https://github.com/angular/angular-
 - 'Deceased' displays the total number of deaths in each countries shaded in yellow. 
 - When the user hovers over each country, the number of cases for that country is displayed.
 
-**/covid/map/detail/{country.code}
-- When the user clicks on any country, the `covid-detail` component pops up and displays more detailed information for that country.
-- 
+**/covid/map/detail/{country.code}**
+- When the user clicks on any country, the `covid-detail` component pops up and displays detailed information for that country.
+- Also displayed is a Google Visualization: Pie Chart depicting the percentage of Confirmed cases that are either currently Active, Recovered, or resulted in Death.
+- Clicking anywhere on the page dismisses the popup and returns to the world map.
 
 
 
