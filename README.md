@@ -5,9 +5,15 @@ A fully-responsive, interactive web interface that displays **up-to-date Covid-1
 
 The user may choose to display current Covid-19 data for each country for **active cases**, total **confirmed cases**, total **recovered cases**, total **deaths**, and **cases per million people**. Detailed data for each country and a **pie chart** showing the relative number of recoveries, deaths, and active cases are displayed when the user clicks on a country. Data is drawn from the **About Corona Api** (https://about-corona.net/) and rendered using the **Google Visualization: Geochart** api from Google Cloud Platform with the 'regions' setting enabled (https://developers.google.com/chart/interactive/docs/gallery/geochart). 
 
+![image](https://github.com/rdtaylorjr/Map/blob/master/screenshots/covid-map-per-million.jpg)
+![image](https://github.com/rdtaylorjr/Map/blob/master/screenshots/covid-map-detail.jpg)
+
 Weather data is displayed for cities larger than 6 million people and colored based on the current temperature in each city. The user may view current **temperature**, **precipitation**, **humidity**, and **wind** for each city. Population data is drawn from the **GeoDB Api** (https://geodb-cities-api.wirefreethought.com). Weather data is drawn from the **OpenWeatherMap Api** (https://openweathermap.org/api) and rendered using the **Google Visualization: Geochart** api with the 'markers' setting enabled.
 
 This project was written using [Angular CLI](https://github.com/angular/angular-cli) version 12.0.2 and Visual Studio Code.
+
+![image](https://github.com/rdtaylorjr/Map/blob/master/screenshots/weather-map.jpg)
+![image](https://github.com/rdtaylorjr/Map/blob/master/screenshots/weather-map-detail.jpg)
 
 ## Opening the project
 
