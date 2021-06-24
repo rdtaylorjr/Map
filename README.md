@@ -12,6 +12,9 @@ Weather data is displayed for cities larger than 6 million people and colored ba
 
 This project was written using [Angular CLI](https://github.com/angular/angular-cli) version 12.0.2 and Visual Studio Code.
 
+![image](https://github.com/rdtaylorjr/Map/blob/master/screenshots/weather-map.jpg)
+![image](https://github.com/rdtaylorjr/Map/blob/master/screenshots/weather-map-detail.jpg)
+
 ## Opening the project
 
 - Clone the `Map` repository to your local machine. 
