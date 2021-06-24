@@ -49,6 +49,17 @@ This project was written using [Angular CLI](https://github.com/angular/angular-
 - Also displayed is a Google Visualization: Pie Chart depicting the percentage of Confirmed cases that are either currently Active, Recovered, or resulted in Death.
 - Clicking anywhere on the page dismisses the popup and returns to the world map.
 
+## WeatherMap
+
+**/weather/map**
+- Navigation buttons on the bottom right of the page allow the user to toggle between CovidMap and WeatherMap.
+- WeatherMap displays colored markers for each of the world's cities with a population larger than 6 million people.
+- China is currently excluded from the api call for performance reasons and because of the large number of cities concentrated in a relatively small area.
+- The markers are to be sized proportionally to the size of the city's population.
+
+## ApiKeys
+
+Please note that working apikeys are stored in /src/assets/apikeys.ts and have been .gitignored in order to preserve the integrity of the keys.
 
 
 ## Build
